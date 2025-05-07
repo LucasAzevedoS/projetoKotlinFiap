@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/biometria-db
+  application:
+    name: biometria-validador
+
+server:
+  port: 8080
+  
