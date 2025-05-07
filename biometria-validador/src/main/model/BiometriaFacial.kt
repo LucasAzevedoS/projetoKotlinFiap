@@ -9,7 +9,7 @@ data class BiometriaFacial(
     @Id
     val id: String? = null,
 
-    val imagemBase64: String, // Imagem da face codificada em base64
+    val imagemBase64: String,
     val metadados: MetadadosImagem,
 
     val validado: Boolean,
@@ -23,7 +23,7 @@ data class BiometriaFacial(
 data class MetadadosImagem(
     val formato: String,
     val tamanhoKb: Double,
-    val dataCaptura: String?,          // ISO 8601, se disponível
+    val dataCaptura: String?,
     val fabricanteDispositivo: String?,
-    val localizacao: String?           // GPS ou local aproximado, se disponível
+    val localizacao: String?
 )
