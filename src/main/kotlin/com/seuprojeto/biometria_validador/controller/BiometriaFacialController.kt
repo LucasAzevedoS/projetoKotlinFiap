@@ -1,30 +1,24 @@
-package com.seuprojeto.biometria.controller
+package com.seuprojeto.biometria_validador.controller
 
-import com.seuprojeto.biometria.model.BiometriaFacial
-import com.seuprojeto.biometria.service.BiometriaFacialService
+import com.seuprojeto.biometria_validador.model.BiometriaFacial
+import com.seuprojeto.biometria_validador.service.BiometriaFacialService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/biometria/facial")
+@RequestMapping("/biometria")
 class BiometriaFacialController(
-    private val biometriaFacialService: BiometriaFacialService
+    private val service: BiometriaFacialService
 ) {
 
     @PostMapping
-    fun processarBiometriaFacial(@RequestBody biometria: BiometriaFacial): ResponseEntity<BiometriaFacial> {
-        val resultado = biometriaFacialService.processarBiometriaFacial(biometria)
-        return ResponseEntity.ok(resultado)
+    fun cadastrar(@RequestBody biometria: BiometriaFacial): ResponseEntity<BiometriaFacial> {
+        val salvo = service.registrar(biometria)
+        return ResponseEntity.ok(salvo)
     }
 
     @GetMapping
-    fun listarTodas(): ResponseEntity<List<BiometriaFacial>> {
-        val lista = biometriaFacialService.listarTodas()
-        return ResponseEntity.ok(lista)
-    }
-
-    @GetMapping("/")
-    fun index(): String {
-        return "Bem-vindo à API de Biometria Facial!";
+    fun listar(): ResponseEntity<List<BiometriaFacial>> {
+        return ResponseEntity.ok(service.listar())
     }
 }
